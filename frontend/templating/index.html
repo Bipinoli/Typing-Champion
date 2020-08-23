@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing champion</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/chat.css">
+    <style>
+        .main {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+        }
+        .content {
+            flex: .75;
+            border-right: 0px;
+            display: grid;
+            place-items: center;
+        }
+        .chat {
+            flex: .25;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="content">content here</div>
+        <div class="chat">
+            <div class="chat-display">
+                <div class="message others-message">
+                    <div class="message-author">Bipin</div>
+                    <div class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.</div>
+                </div>
+                <div class="message others-message">
+                    <div class="message-author">Bipin</div>
+                    <div class="message-text">Lorem ipsum dolor, sit amet </div>
+                </div>
+                <div class="message my-message">
+                    <div class="message-author">Jackie</div>
+                    <div class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.</div>
+                </div>
+                <div class="joined-left-info">
+                    <img src="./img/dots.svg" alt="">
+                    <p>Romal<span>joined</span></p>
+                </div>
+                <div class="message others-message">
+                    <div class="message-author">Bipin</div>
+                    <div class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.</div>
+                </div>
+                <div class="message others-message">
+                    <div class="message-author">Bipin</div>
+                    <div class="message-text">Lorem ipsum dolor, sit amet </div>
+                </div>
+                <div class="joined-left-info">
+                    <img src="./img/dots.svg" alt="">
+                    <p>Ishan<span>left</span></p>
+                </div>
+                <div class="joined-left-info">
+                    <img src="./img/dots.svg" alt="">
+                    <p>Binay<span>joined</span></p>
+                </div>
+                
+                <div class="message my-message">
+                    <div class="message-author">Jackie</div>
+                    <div class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.</div>
+                </div>              
+            </div>
+            <div class="chat-input">
+                <div class="chat-input-content">
+                    <div class="chat-write">
+                        <span class="text-growable" role="textbox" contenteditable></span>
+                    </div>
+                    <div class="chat-send">
+                        <img src="./img/send.svg" alt="send">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
