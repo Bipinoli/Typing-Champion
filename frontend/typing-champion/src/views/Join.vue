@@ -4,8 +4,8 @@
             <div :class="{'error-msg': !validNickname, 'correct-msg': validNickname}">{{errorMsg}}</div>
             <input type="text" placeholder="Enter Nickname" v-model="nickname">
             <div class="btns">
-                <div class="btn">Join</div>
-                <div class="btn">Host</div>
+                <div class="btn" @click="join" disable='true'>Join</div>
+                <div class="btn" @click="host">Host</div>
             </div>
         </div>
     </div>
@@ -35,6 +35,16 @@ export default {
         }
     },
     methods: {
+        join() {
+            if (this.validNickname) {
+                this.$emit('join', this.nickname);
+            }
+        },
+        host() {
+            if (this.validNickname) {
+                this.$emit('host', this.nickname);
+            }
+        },
         validateNickname(name) {
             const firstCharCheck = /^[a-zA-Z_]/;
             const whitespaceCheck = /\s/;
@@ -48,6 +58,10 @@ export default {
                 return 'nickname must be a single word';
             if (!fullCheck.test(name))
                 return 'only alphabets and numbers are allowed in a nickname';
+            if (name.length < 2)
+                return 'nickname is too short';
+            if (name.length > 25)
+                return 'nickname is too long';
             return '';
         }
     }
@@ -72,11 +86,13 @@ export default {
     color: var(--red-color);
     font-weight: lighter;
     padding-bottom: .4rem;
+    text-align: center;
 }
 .correct-msg {
     color: var(--green-color);
     font-weight: lighter;
     padding-bottom: .4rem;
+    text-align: center;
 }
 input {
     width: 100%;
@@ -101,6 +117,7 @@ input::placeholder {
     width: 48%;
     text-align: center;
     padding: .8rem;
+    user-select: none;
 }
 .btn:hover {
     cursor: pointer;

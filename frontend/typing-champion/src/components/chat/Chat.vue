@@ -1,34 +1,21 @@
 <template>
     <div class="chat">
             <div class="chat-display">
-                <chat-message 
-                    type="others-msg"
-                    author="Bipin"
-                    text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.">
-                </chat-message>
-                <chat-message 
-                    type="my-msg"
-                    author="Jackie"
-                    text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus.">
-                </chat-message>
-                <joined-left-info name="Romal" info="joined"></joined-left-info>
-                <chat-message 
-                    type="others-msg"
-                    author="Bipin"
-                    text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.">
-                </chat-message>
-                <chat-message 
-                    type="others-msg"
-                    author="Bipin"
-                    text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.">
-                </chat-message>
-                <joined-left-info name="Ishan" info="left"></joined-left-info>
-                <joined-left-info name="Bipin" info="joined"></joined-left-info>
-                <chat-message 
-                    type="my-msg"
-                    author="Jackie"
-                    text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus.">
-                </chat-message>              
+                <template v-for="msg in allMessages">
+                    <chat-message
+                        v-if="msg.category == 'chat'"
+                        :key='msg.id'
+                        :type='msg.type'
+                        :author='msg.author'
+                        :text='msg.text'>
+                    </chat-message>
+                    <joined-left-info
+                        v-else
+                        :key='msg.id'
+                        :name='msg.name'
+                        :info='msg.info'>
+                    </joined-left-info>
+                </template>
             </div>
             <chat-input class="chat-input"></chat-input>
         </div>
@@ -36,6 +23,8 @@
 
 
 <script>
+import { mapGetters } from 'vuex';
+
 import ChatMessage from '@/components/chat/ChatMessage.vue'
 import JoinedLeftInfo from '@/components/chat/JoinedLeftInfo.vue'
 import ChatInput from '@/components/chat/ChatInput.vue'
@@ -56,7 +45,8 @@ export default {
     },
     created() {
         this.socket = io("http://localhost:3000")
-    }
+    },
+    computed: mapGetters(['allMessages']),
 }
 </script>
 

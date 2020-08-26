@@ -1,27 +1,29 @@
 <template>
   <div id="app">
-    <!-- <div class="main">
-      <div class="content">content here</div>
-      <Chat class="chat"></Chat>
-    </div> -->
-    <join></join>
+    <router-view @join='join' @host='host'/>
   </div>
 </template>
 
 
+
+
 <script>
-
-import Join from '@/views/Join.vue';
-// import Chat from '@/components/chat/Chat.vue';
-
 export default {
   name: "App",
-  components: {
-    // Chat,
-    Join,
+  methods: {
+    join(nickname) {
+      console.log(nickname, ' joined');
+      this.$router.replace('/game');
+    },
+    host(nickname) {
+      console.log('hosted by ', nickname);
+      this.$router.replace('/game');
+    }
   }
 }
 </script>
+
+
 
 
 <style>
@@ -51,26 +53,5 @@ textarea, input {
     font-family: 'Lato', sans-serif;
     color: var(--black-color);
 }
-
-
-
-
-.main {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-}
-.content {
-    flex: .75;
-    border-right: 0px;
-    display: grid;
-    place-items: center;
-}
-.chat {
-    flex: .25;
-}
-
-
-
 
 </style>
