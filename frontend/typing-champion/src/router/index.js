@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Race from '../views/Race.vue'
 
 Vue.use(VueRouter)
@@ -10,11 +9,6 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Race',
     component: Race
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
   },
   {
     path: '/about',

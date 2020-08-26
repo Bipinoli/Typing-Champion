@@ -11,7 +11,7 @@
                     author="Jackie"
                     text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus.">
                 </chat-message>
-                <joined-left-info name="Romal" event="joined"></joined-left-info>
+                <joined-left-info name="Romal" info="joined"></joined-left-info>
                 <chat-message 
                     type="others-msg"
                     author="Bipin"
@@ -22,8 +22,8 @@
                     author="Bipin"
                     text="bipin ipsum dolor sit amet consectetur adipisicing elit. Eligendi fugiat nemo, dicta nostrum cumque perferendis doloribus. Quae veritatis fugiat nulla! Illum amet nisi molestiae reiciendis dignissimos sed nostrum iusto provident.">
                 </chat-message>
-                <joined-left-info name="Ishan" event="left"></joined-left-info>
-                <joined-left-info name="Bipin" event="joined"></joined-left-info>
+                <joined-left-info name="Ishan" info="left"></joined-left-info>
+                <joined-left-info name="Bipin" info="joined"></joined-left-info>
                 <chat-message 
                     type="my-msg"
                     author="Jackie"
@@ -36,10 +36,11 @@
 
 
 <script>
-
 import ChatMessage from '@/components/chat/ChatMessage.vue'
 import JoinedLeftInfo from '@/components/chat/JoinedLeftInfo.vue'
 import ChatInput from '@/components/chat/ChatInput.vue'
+
+import io from 'socket.io-client';
 
 export default {
     name: 'Chat',
@@ -48,6 +49,14 @@ export default {
         JoinedLeftInfo,
         ChatInput,
     },
+    data() {
+        return {
+            socket: {},
+        };
+    },
+    created() {
+        this.socket = io("http://localhost:3000")
+    }
 }
 </script>
 

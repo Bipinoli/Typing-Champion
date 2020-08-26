@@ -1,7 +1,7 @@
 <template>
     <div class="joined-left-info">
         <img src="@/assets/dots.svg" alt="">
-        <p>{{name}}<span>{{event}}</span></p>
+        <p>{{name}}<span>{{info}}</span></p>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 <script>
 export default {
     name: 'JoinedLeftInfo',
-    props: ['name', 'event'],
+    props: ['name', 'info'],
 }
 </script>
 

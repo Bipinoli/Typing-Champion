@@ -1,21 +1,24 @@
 <template>
   <div id="app">
-    <div class="main">
+    <!-- <div class="main">
       <div class="content">content here</div>
       <Chat class="chat"></Chat>
-    </div>
+    </div> -->
+    <join></join>
   </div>
 </template>
 
 
 <script>
 
-import Chat from '@/components/chat/Chat.vue'
+import Join from '@/views/Join.vue';
+// import Chat from '@/components/chat/Chat.vue';
 
 export default {
   name: "App",
   components: {
-    Chat,
+    // Chat,
+    Join,
   }
 }
 </script>
