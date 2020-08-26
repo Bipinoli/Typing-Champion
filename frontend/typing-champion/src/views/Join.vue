@@ -1,7 +1,8 @@
 <template>
     <div class="join">
         <div class="content">
-            <input type="text" placeholder="Enter Nickname">
+            <div :class="{'error-msg': !validNickname, 'correct-msg': validNickname}">{{errorMsg}}</div>
+            <input type="text" placeholder="Enter Nickname" v-model="nickname">
             <div class="btns">
                 <div class="btn">Join</div>
                 <div class="btn">Host</div>
@@ -14,7 +15,42 @@
 <script>
 export default {
     name: 'Join',
-
+    data() {
+        return {
+            nickname: '',
+            errorMsg: 'you must provide a nickname',
+            validNickname: false,
+        };
+    },
+    watch: {
+        nickname(value) {
+            let error = this.validateNickname(value);
+            if (error == '') {
+                this.validNickname = true;
+                this.errorMsg = 'valid nickname';
+                return;
+            }
+            this.validNickname = false;
+            this.errorMsg = error;
+        }
+    },
+    methods: {
+        validateNickname(name) {
+            const firstCharCheck = /^[a-zA-Z_]/;
+            const whitespaceCheck = /\s/;
+            const fullCheck = /^[a-zA-Z_]\w*$/;
+            
+            if (name.length == 0)
+                return 'you must provide a nickname';
+            if (!firstCharCheck.test(name))
+                return 'nickname must start with an alphabet';
+            if (whitespaceCheck.test(name))
+                return 'nickname must be a single word';
+            if (!fullCheck.test(name))
+                return 'only alphabets and numbers are allowed in a nickname';
+            return '';
+        }
+    }
 }
 </script>
 
@@ -31,6 +67,16 @@ export default {
     display: flex;
     flex-direction: column;
     width: 30vw;
+}
+.error-msg {
+    color: var(--red-color);
+    font-weight: lighter;
+    padding-bottom: .4rem;
+}
+.correct-msg {
+    color: var(--green-color);
+    font-weight: lighter;
+    padding-bottom: .4rem;
 }
 input {
     width: 100%;
@@ -55,5 +101,8 @@ input::placeholder {
     width: 48%;
     text-align: center;
     padding: .8rem;
+}
+.btn:hover {
+    cursor: pointer;
 }
 </style>
