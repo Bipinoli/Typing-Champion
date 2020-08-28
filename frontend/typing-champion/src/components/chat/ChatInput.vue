@@ -2,9 +2,9 @@
     <div class="chat-input">
         <div class="chat-input-content">
             <div class="chat-write">
-                <span class="text-growable" role="textbox" contenteditable></span>
+                <span class="text-growable" role="textbox" ref="chat-input" @input="inputText($event)" contenteditable></span>
             </div>
-            <div class="chat-send">
+            <div class="chat-send" @click="send">
                 <img src="@/assets/send.svg" alt="send">
             </div>
         </div>
@@ -13,8 +13,26 @@
 
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'ChatInput',
+    data() {
+        return {
+            text: '',
+        };
+    },
+    methods: {
+        ...mapActions(['addChatMessage', 'addJoinInfo']),
+        send() {
+            this.addChatMessage({type: 'my-msg', author: 'Jackie', text: this.text});
+            this.text = '';
+            this.$refs['chat-input'].innerText = '';
+        },
+        inputText(e) {
+            this.text = e.target.innerText;
+        }
+    }
 }
 </script>
 

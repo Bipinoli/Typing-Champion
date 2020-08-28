@@ -28,12 +28,13 @@ export default {
     padding-bottom: .5rem;
 }
 .others-message {
-    justify-self: flex-start;
+    align-self: flex-start;
 }
 .my-message {
     background-color: var(--green-color);
     color: #fff;
-    justify-self: flex-end;
+    align-self: flex-end;
     border-radius: 20px 20px 0 20px;
+    border: 0px;
 }
 </style>

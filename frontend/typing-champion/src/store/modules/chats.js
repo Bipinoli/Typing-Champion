@@ -26,13 +26,37 @@ const state = {
     ],
 };
 
+const mutations = {
+    addMessage(state, message) {
+        state.messages.push(message);
+    },
+};
+
+const actions = {
+    addChatMessage({ commit }, {type, author, text}) {
+        commit('addMessage', {
+            id: uuidv4(),
+            category: 'chat',
+            type: type,
+            author: author,
+            text: text,
+        });
+    },
+    addJoinInfo({ commit }, {name, info}) {
+        commit('addMessage', {
+            id: uuidv4(),
+            category: 'info',
+            name: name,
+            info: info,
+        });
+    }
+};
+
 const getters = {
     allMessages: (state) => state.messages,
 };
 
-const actions = {};
 
-const mutations = {};
 
 
 export default {

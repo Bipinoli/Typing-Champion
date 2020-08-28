@@ -61,9 +61,10 @@ export default {
     box-shadow: 0 0 4px rgba(0,0,0,.25);
 }
 .chat-display {
+    width: 100%;
     flex: .93;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
     padding: .7rem;
     overflow: auto;
 }
