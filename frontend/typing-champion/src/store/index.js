@@ -7,10 +7,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    'nickname': '',
   },
   mutations: {
+    setNickname(state, nickname) {
+      state.nickname = nickname;
+    }
   },
   actions: {
+    setNickname({ commit }, nickname) {
+      commit('setNickname', nickname);
+    }
   },
   modules: {
     Chats,

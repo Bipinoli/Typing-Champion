@@ -16,8 +16,9 @@
                         :info='msg.info'>
                     </joined-left-info>
                 </template>
+                <span id="end-mark"></span>
             </div>
-            <chat-input class="chat-input"></chat-input>
+            <chat-input></chat-input>
         </div>
 </template>
 

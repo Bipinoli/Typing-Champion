@@ -27,6 +27,10 @@ export default {
     font-weight: 600;
     padding-bottom: .5rem;
 }
+.message-text {
+    word-break: break-word;
+    white-space: pre-wrap;
+}
 .others-message {
     align-self: flex-start;
 }
