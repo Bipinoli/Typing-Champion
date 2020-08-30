@@ -17,16 +17,14 @@ export default {
     join(nickname) {
       console.log(nickname, ' joined');
       this.setNickname(nickname);
-      this.addJoinInfo({name: nickname, info: 'joined'})
       this.$router.replace('/game');
     },
     host(nickname) {
       console.log('hosted by ', nickname);
       this.setNickname(nickname);
-      this.addJoinInfo({name: nickname, info: 'hosted'})
       this.$router.replace('/game');
     },
-    ...mapActions(['setNickname', 'addJoinInfo']),
+    ...mapActions(['setNickname']),
   }
 }
 </script>

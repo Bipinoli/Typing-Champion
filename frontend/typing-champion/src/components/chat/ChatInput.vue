@@ -30,13 +30,14 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addChatMessage", "addJoinInfo"]),
+    ...mapActions(["addChatMessage"]),
     send() {
-      this.addChatMessage({
+      let payload = {
         type: "my-msg",
         author: this.$store.state.nickname,
         text: this.text,
-      });
+      };
+      this.addChatMessage(payload);
       this.text = "";
       this.$refs["input-ref"].innerHTML = "";
       // making sure that vitrual dom updates get reflected before
@@ -46,6 +47,8 @@ export default {
           .getElementById("end-mark")
           .scrollIntoView({ behavior: "smooth", block: "end" });
       }, 0);
+
+      this.$emit('newChat', {...payload, type: 'others-msg'});
     },
     inputText(e) {
       this.text = e.target.innerText;
