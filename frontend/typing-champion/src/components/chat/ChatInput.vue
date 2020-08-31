@@ -30,7 +30,9 @@ export default {
     };
   },
   methods: {
+
     ...mapActions(["addChatMessage"]),
+
     send() {
       let payload = {
         type: "my-msg",
@@ -40,19 +42,13 @@ export default {
       this.addChatMessage(payload);
       this.text = "";
       this.$refs["input-ref"].innerHTML = "";
-      // making sure that vitrual dom updates get reflected before
-      // manually working from actual dom
-      setTimeout(() => {
-        document
-          .getElementById("end-mark")
-          .scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 0);
-
       this.$emit('newChat', {...payload, type: 'others-msg'});
     },
+
     inputText(e) {
       this.text = e.target.innerText;
     },
+
     checkEnterKey(e) {
       if (e.keyCode == 13 && !e.shiftKey) {
         // shift + enter = new line

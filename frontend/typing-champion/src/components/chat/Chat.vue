@@ -51,25 +51,13 @@ export default {
 
     this.socket.on("user-info", (payload) => {
       this.addJoinInfo(payload);
-      // making sure that vitrual dom updates get reflected before
-      // manually working from actual dom
-      setTimeout(() => {
-        document
-          .getElementById("end-mark")
-          .scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 0);
+      this.scrollIntoLatestMsg();
     });
 
     this.socket.on("new-chat", (payload) => {
       console.log("new chat received: ", payload);
       this.addChatMessage(payload);
-      // making sure that vitrual dom updates get reflected before
-      // manually working from actual dom
-      setTimeout(() => {
-        document
-          .getElementById("end-mark")
-          .scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 0);
+      this.scrollIntoLatestMsg();
     });
   },
 
@@ -77,7 +65,17 @@ export default {
 
   methods: {
     shoutNewChat(payload) {
+      this.scrollIntoLatestMsg();
       this.socket.emit("new-chat", payload);
+    },
+    scrollIntoLatestMsg() {
+      // making sure that vitrual dom updates get reflected before
+      // manually working from actual dom
+      setTimeout(() => {
+        document
+          .getElementById("end-mark")
+          .scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 0);
     },
     ...mapActions(["addChatMessage", "addJoinInfo"]),
   },
