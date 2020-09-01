@@ -21,12 +21,36 @@
         .chat {
             flex: .25;
         }
+
+
+        .chat-header {
+            height: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            box-shadow: 0px 2px 2px rgba(0,0,0,.1);
+        }
+        .chat-title {
+            flex: .9;
+            text-align: center;
+            font-weight: bolder;
+        }
+        .hamburger {
+            flex: .08;
+            margin-right: .5rem;
+        }
+
     </style>
 </head>
 <body>
     <div class="main">
         <div class="content">content here</div>
         <div class="chat">
+            <div class="chat-header">
+                <div class="chat-title">Typing Champion</div>
+                <img src="img/hamburger.svg" alt="menu" class="hamburger">
+            </div>
             <div class="chat-display">
                 <div class="message others-message">
                     <div class="message-author">Bipin</div>

@@ -1,5 +1,14 @@
 ### Tech specs:
 
+## feature list
+
+ - [ ] host game
+ - [ ] generate unique URL with proper signature to join the game
+ - [ ] out of many active games user will be joined to a particular one as per the url signature
+ - [ ] if host leaves the next host should be selected
+ - [ ] if everyone leaves game should end and no one should be able to join again 
+
+
 #### Vue specific:
 1. Vue cli
 2. Vue-router
