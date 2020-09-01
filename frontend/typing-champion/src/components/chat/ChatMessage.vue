@@ -20,13 +20,13 @@ export default {
   max-width: 80%;
   border: 1px solid var(--gray-color);
   border-radius: 0 20px 20px 20px;
-  padding: 1rem;
+  padding: .5rem 1rem;
   margin-bottom: 0.5rem;
   margin-top: 0.8rem;
 }
 .message-author {
   font-weight: 600;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.2rem;
 }
 .message-text {
   word-break: break-word;
