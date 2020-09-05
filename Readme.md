@@ -2,11 +2,13 @@
 
 ## feature list
 
- - [ ] host game
- - [ ] generate unique URL with proper signature to join the game
- - [ ] out of many active games user will be joined to a particular one as per the url signature
+ - [x] host game
+ - [x] generate unique URL with proper signature to join the game
+ - [x] out of many active games user will be joined to a particular one as per the url signature
  - [ ] if host leaves the next host should be selected
- - [ ] if everyone leaves game should end and no one should be able to join again 
+ - [x] if everyone leaves game should end 
+ - [x] don't let the user join with a nickname if a user with same nickname already exists
+ - [x] allow users to see the participants in chat and their roles via chat menu 
 
 
 #### Vue specific:

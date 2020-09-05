@@ -26,9 +26,9 @@ export default {
     };
   },
   created() {
-      if (this.$store.state.signature != '') {
-          this.joining = true;
-      }
+    if (this.$store.state.signature != "") {
+      this.joining = true;
+    }
   },
   watch: {
     nickname(value) {
@@ -45,14 +45,17 @@ export default {
   methods: {
     join() {
       if (this.validNickname) {
-        checkIfNameAvailable(this.nickname, this.$store.state.signature).then(isAvailable => {
+        checkIfNameAvailable(this.nickname, this.$store.state.signature).then(
+          (isAvailable) => {
             if (!isAvailable) {
-                this.validNickname = false;
-                this.errorMsg = "Sorry! the nickname is taken. Please choose another";
-                return;
+              this.validNickname = false;
+              this.errorMsg =
+                "Sorry! the nickname is taken. Please choose another";
+              return;
             }
             this.$emit("join", this.nickname);
-        });
+          }
+        );
       }
     },
     host() {
@@ -79,18 +82,20 @@ export default {
 };
 
 function checkIfNameAvailable(name, signature) {
-    return new Promise((resolve, reject) => {
-        try {
-            let socket = io("http://localhost:3000");
-            socket.emit('check-if-name-available', {name: name, signature: signature});
-            socket.on('name-availability', isAvailable => {
-                resolve(isAvailable);
-            });
-        }
-        catch(e) {
-            reject(e);
-        }
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      let socket = io("http://localhost:3000");
+      socket.emit("check-if-name-available", {
+        name: name,
+        signature: signature,
+      });
+      socket.on("name-availability", (isAvailable) => {
+        resolve(isAvailable);
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
 </script>
 
