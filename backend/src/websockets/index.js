@@ -13,7 +13,7 @@ module.exports = (http) => {
     console.log("a user connected");
     let clientname;
     let clientRoom;
-    
+
     socket.on("user-info", (payload) => {
       if (payload.info == 'joined')
         clientname = payload.name;
@@ -27,7 +27,7 @@ module.exports = (http) => {
         rooms[clientRoom] = [];
       rooms[clientRoom].push(clientname);
 
-      let payBack = {...payload};
+      let payBack = { ...payload };
       delete payBack.signature;
       io.in(room = payload.signature).emit("user-info", payBack);
     });
@@ -35,7 +35,7 @@ module.exports = (http) => {
 
     socket.on("new-chat", (payload) => {
       console.log("new chat: ", payload.author);
-      let payBack = {...payload};
+      let payBack = { ...payload };
       delete payBack.signature;
       socket.to(room = payload.signature).emit('new-chat', payload);
     });
@@ -49,13 +49,13 @@ module.exports = (http) => {
         };
         socket.emit('participants-list', data);
       }
-      catch(e) {
+      catch (e) {
         console.error(e);
       }
     });
 
 
-    socket.on("check-if-name-available", ({name, signature}) => {
+    socket.on("check-if-name-available", ({ name, signature }) => {
       let isAvailable = rooms[signature].indexOf(name) == -1;
       console.log('checking if name available name: ', name);
       console.log(rooms);
@@ -70,7 +70,7 @@ module.exports = (http) => {
         if (rooms[clientRoom].length == 0)
           delete rooms[clientRoom];
       }
-      socket.to(room = clientRoom).emit("user-info", {name: clientname, info: 'left'});
+      socket.to(room = clientRoom).emit("user-info", { name: clientname, info: 'left' });
     });
   });
 };
