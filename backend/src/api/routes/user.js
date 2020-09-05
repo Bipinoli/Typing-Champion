@@ -10,5 +10,9 @@ module.exports = (app) => {
   route.get('/me', middlewares.middlewareTest, (req, res) => {
     return res.json({'message': 'hello there wasssup 😻'}).status(200);
   });
-};
 
+  route.get('/host/', (req, res) => {
+    return res.json({'message': '🚒 🚒 🚒 🚒 🚒 🚒 🚒'})
+  });
+
+}
