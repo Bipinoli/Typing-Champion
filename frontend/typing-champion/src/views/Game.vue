@@ -16,6 +16,12 @@ export default {
   name: "Game",
   components: {
     Chat,
+  },
+  created() {
+    if (this.$store.state.nickname == '') {
+      this.$store.state.signature = this.$route.params.signature;
+      this.$router.replace('/');
+    }
   }
 }
 </script>

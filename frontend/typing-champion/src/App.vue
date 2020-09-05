@@ -17,16 +17,31 @@ export default {
     join(nickname) {
       console.log(nickname, ' joined');
       this.setNickname(nickname);
-      this.$router.replace('/game');
+      this.$router.replace(`/game/${this.$store.state.signature}`);
     },
     host(nickname) {
-      console.log('hosted by ', nickname);
-      this.setNickname(nickname);
-      this.$router.replace('/game');
+      hostRequest(nickname).then((signature) => {
+        this.setNickname(nickname);
+        this.$router.replace(`/game/${signature}`);
+      });
     },
     ...mapActions(['setNickname']),
   }
 }
+
+function hostRequest(nickname) {
+  return new Promise((resolve, reject) => {
+    fetch(`http://localhost:3000/api/connect/host/${nickname}`)
+    .then(data => data.json())
+    .then(data => {
+      resolve(data.signature);
+    })
+    .catch(e => {
+      reject(e);
+    });
+  });
+}
+
 </script>
 
 
