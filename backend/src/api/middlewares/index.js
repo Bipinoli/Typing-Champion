@@ -1,4 +1,4 @@
-const middlewareTest = require('./test');
+const middlewareTest = require('./middlewareTest');
 
 
 module.exports = {
