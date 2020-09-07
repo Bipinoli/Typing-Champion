@@ -33,6 +33,6 @@ jobs:
 
       - name: backend unit tests
         run: |
-          cd ../../backend
+          cd backend
           npm install
           npm run test:unit
