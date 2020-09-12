@@ -58,6 +58,9 @@ function hostRequest(nickname) {
     --black-color: #32322C;
     --white-color: #EEF0F2;
     --gray-color: #BABABA;
+
+    --light-yellow-color: #FBE79D;
+    --light-green-color: #5CD6A5;
 }
 * {
     box-sizing: border-box;

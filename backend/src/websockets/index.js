@@ -1,4 +1,6 @@
 const { reader } = require('../services/signature');
+const chatSocketEventHandlers = require('./chat');
+const gameSocketEventHandlers = require('./game');
 
 
 let rooms = {
@@ -33,14 +35,6 @@ module.exports = (http) => {
     });
 
 
-    socket.on("new-chat", (payload) => {
-      console.log("new chat: ", payload.author);
-      let payBack = { ...payload };
-      delete payBack.signature;
-      socket.to(room = payload.signature).emit('new-chat', payload);
-    });
-
-
     socket.on("asking-4-participants", signature => {
       try {
         let data = {
@@ -72,5 +66,10 @@ module.exports = (http) => {
       }
       socket.to(room = clientRoom).emit("user-info", { name: clientname, info: 'left' });
     });
+
+
+    chatSocketEventHandlers(socket);
+    gameSocketEventHandlers(socket);
+
   });
 };

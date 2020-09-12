@@ -1,12 +1,15 @@
 <template>
   <div class="join">
-    <div class="content">
-      <div :class="{'error-msg': !validNickname, 'correct-msg': validNickname}">{{errorMsg}}</div>
-      <input type="text" placeholder="Enter Nickname" v-model="nickname" />
-      <div class="btns">
-        <div class="btn" @click="join" v-if="joining">Join</div>
-        <div class="btn" @click="host" v-else>Host</div>
+    <div>
+      <div class="content">
+        <div :class="{'error-msg': !validNickname, 'correct-msg': validNickname}">{{errorMsg}}</div>
+        <input type="text" placeholder="Enter Nickname" v-model="nickname" />
+        <div class="btns">
+          <div class="btn" @click="join" v-if="joining">Join</div>
+          <div class="btn" @click="host" v-else>Host</div>
+        </div>
       </div>
+      <p class="share-msg">Share your URL to invite others</p>
     </div>
   </div>
 </template>
@@ -149,8 +152,14 @@ input::placeholder {
   text-align: center;
   padding: 0.8rem;
   user-select: none;
+  letter-spacing: 0.15em;
 }
 .btn:hover {
   cursor: pointer;
+}
+.share-msg {
+  text-align: center;
+  padding-top: 1rem;
+  font-weight: lighter;
 }
 </style>
