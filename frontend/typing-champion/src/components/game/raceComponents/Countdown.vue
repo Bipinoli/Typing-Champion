@@ -12,6 +12,7 @@ export default {
   data() {
     return {
       dtime: this.time,
+      elapsed: 0,
       timer: null,
     }
   },
@@ -19,6 +20,7 @@ export default {
     start() {
       this.timer = setInterval(() => {
         this.dtime -= 1;
+        this.elapsed += 1;
         if (this.dtime <= 0) 
           this.over();
       },1000);
@@ -29,6 +31,9 @@ export default {
     over() {
       clearInterval(this.timer);
       this.$emit('timeUp');
+    },
+    getElapsedTime() {
+      return this.elapsed;
     },
     formatSeconds(time) {
       return `${Math.floor(time/60)}:${time%60}`;
