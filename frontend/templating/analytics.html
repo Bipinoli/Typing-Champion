@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       height: 100vh;
       display: grid;
       place-items: center;
     }
-    #canvas {
-      border: 2px dotted black;
-      width: 800px;
-      height: 500px;
-      background-color: #eee;
+
+    #myChart {
+      width: 800px !important;
+      height: 600px !important;
+    }
+
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2px;
     }
   </style>
 </head>
+
 <body>
-  <div id="canvas"></div>
+  <canvas id="myChart"></canvas>
 
   <script>
     let data = [
@@ -52,21 +60,63 @@
     ];
 
 
-  const margin = {top: 10, right: 10, bottom: 20, left: 20};
-  const width = 800 - margin.left - margin.right;
-  const height = 500 - margin.top - margin.bottom;
+    function showChart(data) {
+      let context = document.getElementById('myChart').getContext('2d');
+      Chart.defaults.derivedLine = Chart.defaults.line;
 
-  let x = d3.scaleLinear().range([0, width]);
-  let y = d3.scaleLinear().range([height, 0]);
+      let custom = Chart.controllers.line.extend({
+        draw: function (ease) {
+          // Call super method first
+          Chart.controllers.line.prototype.draw.call(this, ease);
 
-  const svg = d3.select('#canvas').append('svg')
-                  .attr('width', width + margin.left + margin.right)
-                  .attr('height', height + margin.top + margin.bottom)
-                .append('g')
-                  .attr('transform', `translate(${margin.left},${margin.right})`);
+          // drawing customization
+          let meta = this.getMeta();
+          let pt0 = meta.data[meta.data.length - 1];
+          let radius = pt0._view.radius + 5;
 
-      
-                  
+          let ctx = this.chart.chart.ctx;
+          ctx.save();
+          ctx.strokeStyle = 'red';
+          ctx.lineWidth = 1;
+          ctx.font = '24px Sans-serif';
+          ctx.fillText(this._config.rank, pt0._view.x - 12, pt0._view.y - 18);
+          ctx.beginPath();
+          ctx.arc(pt0._view.x, pt0._view.y, 8, 0, 2 * Math.PI);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+
+
+      // Stores the controller so that the chart initialization routine can look it up with
+      // Chart.controllers[type]
+      Chart.controllers.derivedLine = custom;
+
+      let _chartData = { 
+        labels: [...Array(35).keys()] ,
+        datasets: [],
+      };
+      for (let i = 0; i < data.length; i++) {
+        _chartData.datasets.push({
+          label: data[i].name,
+          rank: data[i].rank,
+          data: [0, ...data[i].speed],
+          backgroundColor: 'rgb(255, 99, 132)',
+          fill: false,
+          lineTension: 0.3,
+          borderColor: 'rgb(255, 99, 132)',
+        });
+      }
+
+      let chart = new Chart(context, {
+        type: 'derivedLine',
+        data: _chartData,
+      });
+    }
+
+    showChart(data);
+
   </script>
 </body>
+
 </html>
