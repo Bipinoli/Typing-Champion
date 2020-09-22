@@ -7,7 +7,8 @@
       </div>
       <countdown :time="countdown" @timeUp="finishGame" ref="countdown"></countdown>
     </div>
-    <game-content :contestants="contestants" ref="gameContent"></game-content>
+    <!-- <game-content :contestants="contestants" ref="gameContent"></game-content> -->
+    <chart-content :raceData="raceData"></chart-content>
   </div>
 </template>
 
@@ -15,17 +16,18 @@
 
 <script>
 import Countdown from "@/components/game/raceComponents/Countdown";
-import GameContent from "@/components/game/raceComponents/GameContent";
+// import GameContent from "@/components/game/raceComponents/GameContent";
+import ChartContent from "@/components/game/raceComponents/ChartContent";
 
 export default {
   name: "Race",
-  components: { Countdown, GameContent },
+  components: { Countdown, ChartContent },
   mounted() {
     this.$refs.countdown.start();
   },
   data() {
     return {
-      countdown: 5,
+      countdown: 1005,
       contestants: [
         {
           id: 0,
@@ -66,6 +68,67 @@ export default {
           wpm: 33,
           rank: 3,
           progress: 100,
+        },
+      ],
+      raceData: [
+        {
+          name: "kikakikakiku",
+          speed: [23, 21, 45, 46, 47, 49, 50, 53, 62, 70, 76, 64, 65],
+          rank: "2nd",
+        },
+        {
+          name: "dagarok",
+          speed: [32, 30, 32, 45, 50, 51, 67, 75, 82, 92, 72],
+          rank: "1st",
+        },
+        {
+          name: "naruto",
+          speed: [
+            20,
+            10,
+            12,
+            30,
+            20,
+            22,
+            10,
+            30,
+            22,
+            21,
+            10,
+            11,
+            9,
+            12,
+            19,
+            32,
+            28,
+            27,
+            29,
+            11,
+            12,
+            13,
+            14,
+          ],
+          rank: "time up",
+        },
+        {
+          name: "kagayari32x",
+          speed: [
+            20,
+            32,
+            34,
+            45,
+            33,
+            21,
+            50,
+            45,
+            50,
+            30,
+            51,
+            52,
+            55,
+            43,
+          ],
+          rank: "3rd",
         },
       ],
     };
